@@ -1,0 +1,80 @@
+.d-flex{
+    display: flex;
+}
+.justify-between{
+    display: flex;
+    justify-content: space-between;
+}
+.justify-flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+.justify-center{
+    display: flex;
+    justify-content: center;
+}
+.align-center{
+    display:flex;
+    align-items: center;
+}
+.text-{
+  &left{
+    text-align: left!important;
+  }  
+  &center{
+    text-align: center!important;
+  }
+  &right{
+    text-align: right!important;
+  }
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.small-text{
+  font-size: 80%;
+  opacity: .8;
+}
+
+$width_avalaible: 100;
+$sizes: 12;
+
+@mixin width-classes {
+    @for $i from 10 through $width_avalaible {
+       $width: $i * 1%;
+      .w#{$i}  {width: $width;}
+    }
+  }
+@include width-classes;
+
+@mixin margin-classes {
+    @for $i from 1 through $sizes {
+       $margin: $i * 0.25rem;
+      /* margin #{$margin} */
+      .m#{$i}  {margin: $margin;}
+      .ml#{$i} {margin-left: $margin;}
+      .mr#{$i} {margin-right: $margin;}
+      .mt#{$i} {margin-top: $margin;}
+      .mb#{$i} {margin-bottom: $margin;}
+      .mx#{$i} {margin-left: $margin; margin-right: $margin;}
+      .my#{$i} {margin-top: $margin; margin-bottom: $margin;}
+    }
+  }
+@include margin-classes;
+  
+@mixin padding-classes {
+    @for $i from 1 through $sizes {
+      $padding: $i * 0.25rem;
+      /* padding #{$padding} */
+      .p#{$i} {padding: $padding;}
+      .pl#{$i} {padding-left: $padding;}
+      .pr#{$i} {padding-right: $padding;}
+      .pt#{$i} {padding-top: $padding;}
+      .pb#{$i} {padding-bottom: $padding;}
+      .px#{$i} {padding-left: $padding; padding-right: $padding;}
+      .py#{$i} {padding-top: $padding; padding-bottom: $padding;}
+    }
+}
+@include padding-classes;

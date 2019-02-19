@@ -1,29 +1,59 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+    <transition name="fade">
+      <SplashScreen v-show="showSplash" v-on:changeSplashStatus="changeSplashStatus"/>
+    </transition>
     <router-view/>
   </div>
 </template>
 
+<script>
+import SplashScreen from '@/components/SplashScreen.vue'
+
+export default {
+  data() {
+    return {
+      showSplash: true
+    }
+  },
+  mounted() {
+    document.onreadystatechange = () => { 
+      if (document.readyState == "complete") { 
+        setTimeout( () => {
+          this.showSplash = false
+        }, 500)
+        
+      } 
+    }
+  },
+  methods: {
+    changeSplashStatus: function() {
+      this.showSplash = false
+    }
+  },
+  components: {
+    SplashScreen
+  }
+}
+</script>
+
+
 <style lang="scss">
+@import './styles/reset.css';
+@import './styles/default.scss';
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: map-get($COLORS,text);
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
 }
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+
 </style>
