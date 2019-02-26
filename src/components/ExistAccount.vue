@@ -34,6 +34,7 @@
 
 <script>
 import { validate_login } from '../helpers/validationForms.js'
+// import Swal from 'sweetalert2'
 
 export default {
   data() {
@@ -62,6 +63,8 @@ export default {
       vm.err_msg_pass = validation.msg_password
       if(validation.success) {
         console.log('Aqui va el servicio que manda al HOME')
+        vm.$store.commit('setShowLoader', true)
+        
       }
     }
   }

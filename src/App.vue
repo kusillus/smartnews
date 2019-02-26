@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Loader v-show="showLoader"/>
     <transition name="fade">
       <SplashScreen v-show="showSplash" v-on:changeSplashStatus="changeSplashStatus"/>
     </transition>
@@ -9,6 +10,7 @@
 
 <script>
 import SplashScreen from '@/components/SplashScreen.vue'
+import Loader from '@/components/Loader.vue'
 
 export default {
   data() {
@@ -16,7 +18,18 @@ export default {
       showSplash: true
     }
   },
+  computed: {
+    showLoader: function () {
+      console.log(this.$store.state.showLoader)
+      return this.$store.state.showLoader
+    }
+  },
   mounted() {
+    if(!localStorage.login) {
+      if(this.$router.currentRoute.path !== '/login') {
+        this.$router.push('/login')
+      }
+    }
     document.onreadystatechange = () => { 
       if (document.readyState == "complete") { 
         setTimeout( () => {
@@ -32,7 +45,8 @@ export default {
     }
   },
   components: {
-    SplashScreen
+    SplashScreen,
+    Loader
   }
 }
 </script>
