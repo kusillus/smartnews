@@ -20,7 +20,7 @@
         <button @click="fnSendForm" class="btn btn-login w100 text-left mb4">
           Login
         </button>
-        <button class="btn btn-facebook w100 text-left mb4">
+        <button @click="loginWithFacebook()" class="btn btn-facebook w100 text-left mb4">
           Login con Facebook
         </button>
         <span @click="fnCreateAccount" class="small-text cursor-pointer">
@@ -34,6 +34,7 @@
 
 <script>
 import { validate_login } from '../helpers/validationForms.js'
+import { loadFbSdk, getFbLoginStatus, fbLogin } from '../helpers/facebook_sdk.js'
 // import Swal from 'sweetalert2'
 
 export default {
@@ -42,8 +43,35 @@ export default {
       user: null,
       password: null,
       err_msg_usr: null,
-      err_msg_pass: null
+      err_msg_pass: null,
+      app_id: '361771537998812',
+      app_version:'v3.2',
+      FB: undefined,
+      isConnected: false,
+      loginOptions: {
+          scope: 'email'
+      }
     }
+  },
+  mounted: function() {
+    loadFbSdk(this.app_id, this.app_version)
+      .then(getFbLoginStatus)
+      .then(response => {
+        console.log(response)
+        if (response.status === 'connected') {
+          this.isConnected = true
+          this.FB = window.FB
+        }
+        // this.isWorking = false
+        // /** Event `get-initial-status` to be deprecated in next major version! */
+        // this.$emit('get-initial-status', response)
+        // this.$emit('sdk-loaded', {
+        //   isConnected: this.isConnected,
+        //   FB: window.FB
+        // })
+
+      })
+
   },
   methods: {
     fnCreateAccount: function() {
@@ -55,6 +83,24 @@ export default {
       if(vm.validateForm()){
         console.log('khe hace')
       }
+    },
+    loginWithFacebook: function() {
+      fbLogin(this.loginOptions)
+        .then(response => {
+          console.log(response)
+          if (response.status === 'connected') {
+            this.isConnected = true
+          } else {
+            this.isConnected = false
+          }
+          // this.isWorking = false
+          // this.$emit('login', {
+            // response,
+            // FB: window.FB
+            this.FB = window.FB
+          // })
+        })
+      
     },
     validateForm: function() {
       let vm = this
@@ -84,4 +130,3 @@ export default {
   color: map-get($COLORS, fuchsia);
 }
 </style>
-
