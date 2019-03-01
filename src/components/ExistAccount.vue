@@ -17,7 +17,7 @@
         </span>
       </div>
       <div class="group-buttons px4 mt8">
-        <button @click="fnSendForm" class="btn btn-login w100 text-left mb4">
+        <button @click="fnSendForm" class="btn btn-principal-gradient w100 text-left mb4">
           Login
         </button>
         <button @click="loginWithFacebook()" class="btn btn-facebook w100 text-left mb4">
@@ -47,7 +47,6 @@ export default {
       app_id: '361771537998812',
       app_version:'v3.2',
       FB: undefined,
-      isConnected: false,
       loginOptions: {
           scope: 'email'
       }
@@ -62,14 +61,6 @@ export default {
           this.isConnected = true
           this.FB = window.FB
         }
-        // this.isWorking = false
-        // /** Event `get-initial-status` to be deprecated in next major version! */
-        // this.$emit('get-initial-status', response)
-        // this.$emit('sdk-loaded', {
-        //   isConnected: this.isConnected,
-        //   FB: window.FB
-        // })
-
       })
 
   },
@@ -89,9 +80,10 @@ export default {
         .then(response => {
           console.log(response)
           if (response.status === 'connected') {
-            this.isConnected = true
+            localStorage.login = true
+            this.$router.push('/')
           } else {
-            this.isConnected = false
+            localStorage.login = undefined
           }
           // this.isWorking = false
           // this.$emit('login', {

@@ -20,9 +20,11 @@ export default {
   },
   computed: {
     showLoader: function () {
-      console.log(this.$store.state.showLoader)
       return this.$store.state.showLoader
-    }
+    },
+    // isLogged: function () {
+    //   return this.$store.state.isLogged
+    // }
   },
   mounted() {
     if(!localStorage.login) {

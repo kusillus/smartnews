@@ -67,16 +67,17 @@ export default {
     validateForm: function() {
       let vm = this
       let validation = validate_create_account(vm.username,vm.email,vm.password,vm.password_rep)
-      console.log(validation)
+
       vm.err_msg_usrname = validation.msg_user
       vm.err_msg_email = validation.msg_email
       vm.err_msg_pass = validation.msg_password
       vm.err_msg_pass_rep = validation.msg_password_rep
+
       if(validation.success) {
+        localStorage.login = true
+        vm.$router.push('/first-steps')
         console.log('Aqui va el servicio que manda al HOME')
       }
-
-
 
     }
   }

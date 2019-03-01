@@ -1,0 +1,20 @@
+<template>
+  <div>
+      this its menu
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      iconMenu: '<svg style="width:24px;height:24px" viewBox="0 0 24 24"><path fill="#000000" d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>'
+    }
+  }  
+}
+</script>
+
+<style lang="scss">
+
+</style>
+
