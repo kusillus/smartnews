@@ -9,9 +9,10 @@
     
 </template>
 <style lang="scss">
+@import '../styles/default.scss';
     .wrapper-loader{
-        position: absolute;
-        background: red;
+        position: fixed;
+        background: map-get($COLORS,back_op3);
         width: 100%;
         left: 0;
         display: flex;

@@ -8,7 +8,7 @@
 <script>
 export default {
     props: {
-        bannerFinish: {
+        bannerFinish:{
             required: true,
             type: String
         }
@@ -18,7 +18,7 @@ export default {
 
 		}
 	},
-	methods: {
+	methods:{
 
 	}
 }

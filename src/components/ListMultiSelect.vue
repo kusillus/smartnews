@@ -7,11 +7,11 @@
 			</span>
 			<label :class="item.selected==1?'item-selected':'item-no-selected'" >
 				<input
-				 	v-show="false"
-					type="checkbox"
-					v-model="item.selected"
-					true-value="1"
-					false-value="0">
+				v-show="false"
+				type="checkbox"
+				v-model="item.selected"
+				true-value="1"
+				false-value="0">
 			</label>
 		</li>
 	</ul>
@@ -19,7 +19,7 @@
 <script>
 export default {
 	props:{
-		listItems:{ 
+		listItems:{
 			required: true,
 			type: Array	
 		}
@@ -46,7 +46,7 @@ export default {
 			// ]
 		}
 	},
-	methods: {
+	methods:{
 	}
 }
 </script>

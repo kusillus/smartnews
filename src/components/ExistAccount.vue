@@ -68,29 +68,34 @@ export default {
     fnCreateAccount: function() {
       this.$emit('fnCreateAccount', true)
     },
+    showLoaderPrincipal: function(val){
+      let vm = this
+      vm.$store.commit('setShowLoader', val)
+    },
     fnSendForm: function() {
       let vm = this
-      console.log('send')
+      vm.showLoaderPrincipal(true)
       if(vm.validateForm()){
-        console.log('khe hace')
+        localStorage.usr = 123
+        this.$router.push('/')
+      } else {
+        localStorage.usr = undefined
+        vm.showLoaderPrincipal(false)
       }
     },
-    loginWithFacebook: function() {
+    loginWithFacebook: function(){
+      let vm = this
+      vm.showLoaderPrincipal(true)
       fbLogin(this.loginOptions)
         .then(response => {
-          console.log(response)
-          if (response.status === 'connected') {
-            localStorage.login = true
+          if (response.status === 'connected'){
+            console.log('validation login')
+            localStorage.usr = 123
             this.$router.push('/')
           } else {
-            localStorage.login = undefined
+            localStorage.usr = undefined
           }
-          // this.isWorking = false
-          // this.$emit('login', {
-            // response,
-            // FB: window.FB
-            this.FB = window.FB
-          // })
+          this.FB = window.FB
         })
       
     },
@@ -99,11 +104,7 @@ export default {
       let validation = validate_login(vm.user, vm.password)
       vm.err_msg_usr = validation.msg_user
       vm.err_msg_pass = validation.msg_password
-      if(validation.success) {
-        console.log('Aqui va el servicio que manda al HOME')
-        vm.$store.commit('setShowLoader', true)
-        
-      }
+      if(validation.success) return true
     }
   }
 }

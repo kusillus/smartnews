@@ -135,16 +135,16 @@ export default {
       nextStep: function(page) {
         let vm = this
         switch(page) {
-          case 0: 
+          case 0:
             vm.activeMenu = null
             break
-          case 1: 
+          case 1:
             vm.activeMenu = 'Categorias'
             break
-          case 2: 
+          case 2:
             vm.activeMenu = 'Medios'
             break
-          case 3: 
+          case 3:
             vm.activeMenu = 'Finalizado'
             break
         }

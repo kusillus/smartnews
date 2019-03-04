@@ -27,7 +27,7 @@ export default {
     // }
   },
   mounted() {
-    if(!localStorage.login) {
+    if(!localStorage.usr) {
       if(this.$router.currentRoute.path !== '/login') {
         this.$router.push('/login')
       }

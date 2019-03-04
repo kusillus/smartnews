@@ -74,7 +74,7 @@ export default {
       vm.err_msg_pass_rep = validation.msg_password_rep
 
       if(validation.success) {
-        localStorage.login = true
+        localStorage.usr = 123
         vm.$router.push('/first-steps')
         console.log('Aqui va el servicio que manda al HOME')
       }

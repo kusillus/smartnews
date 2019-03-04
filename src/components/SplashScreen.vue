@@ -24,10 +24,9 @@ export default {
 .bg-principal{
   width: 100%;
   height: 100vh;
-  position: absolute;
+  position: fixed;
   top:0;
   left: 0;
-  background-image: url('../assets/bg_home.jpg');
   background-image: url('../assets/bg_home.jpg'),linear-gradient(120deg, map-get($COLORS,orange), map-get($COLORS,fuchsia));
   display: flex;
   align-items: center;
