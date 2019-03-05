@@ -77,6 +77,7 @@ export default {
       vm.showLoaderPrincipal(true)
       if(vm.validateForm()){
         localStorage.usr = 123
+        vm.storageUserData()
         this.$router.push('/')
       } else {
         localStorage.usr = undefined
@@ -98,6 +99,9 @@ export default {
           this.FB = window.FB
         })
       
+    },
+    storageUserData: function(user) {
+
     },
     validateForm: function() {
       let vm = this
